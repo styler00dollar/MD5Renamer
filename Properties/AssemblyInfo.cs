@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle( "Md5RenamerConsole" )]
 [assembly: AssemblyDescription( "" )]
 [assembly: AssemblyConfiguration( "" )]
-[assembly: AssemblyCompany( "" )]
+[assembly: AssemblyCompany( "sager.io" )]
 [assembly: AssemblyProduct( "Md5RenamerConsole" )]
-[assembly: AssemblyCopyright( "Copyright © sagerobert 2017" )]
+[assembly: AssemblyCopyright( "© sager.io 2017-2019" )]
 [assembly: AssemblyTrademark( "" )]
 [assembly: AssemblyCulture( "" )]
 
