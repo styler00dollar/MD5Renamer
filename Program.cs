@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Md5RenamerConsole
 {
-	class Program
+	static class Program
 	{
 		readonly static Version version = new Version( 1, 0 );
 		readonly static string path = AppDomain.CurrentDomain.BaseDirectory;
@@ -22,7 +22,7 @@ namespace Md5RenamerConsole
 
 		static void Main( string[] args )
 		{
-			if ( args == null || !( args.Length > 0 ) )
+			if ( args == null || args.Length < 1 )
 			{
 				Console.WriteLine( syntax );
 				Console.ReadKey();
@@ -41,7 +41,7 @@ namespace Md5RenamerConsole
 
 			List<string> files = GetFiles();
 
-			if ( !( files.Count > 0 ) )
+			if ( files.Count < 1 )
 			{
 				Console.WriteLine( "No files found. Chickening out..." );
 				Console.ReadKey();
@@ -54,17 +54,16 @@ namespace Md5RenamerConsole
 			bool simulate = args.Length > 1 && ( args[ 1 ].ToUpper().Equals( "-D" ) || args[ 1 ].ToUpper().Equals( "--DRY-RUN" ) );
 
 			string extension, targetFile;
-			extension = targetFile = string.Empty;
 			WriteNewLine( 2 );
 
-			foreach ( string file in files )
+			foreach (string file in files)
 			{
-				string hash = HashFile( file );
+				string hash = HashFile(file);
 
-				extension = Path.GetExtension( file );
-				targetFile = Path.Combine( Program.path, Path.ChangeExtension( hash, extension ) );
+				extension = Path.GetExtension(file);
+				targetFile = Path.Combine(Program.path, Path.ChangeExtension(hash, extension));
 
-				if ( !File.Exists( targetFile ) )
+				if (!File.Exists(targetFile))
 				{
 					if ( !simulate )
 					{
@@ -74,10 +73,8 @@ namespace Md5RenamerConsole
 				}
 				else
 				{
-					Console.WriteLine( string.Format( "{0} already exists, skipped;", Path.GetFileName( targetFile ) ) );
+					Console.WriteLine(string.Format("{0} already exists, skipped;", Path.GetFileName(targetFile)));
 				}
-
-				extension = targetFile = string.Empty;
 			}
 
 			stopwatch.Stop();
