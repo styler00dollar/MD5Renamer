@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -62,6 +62,7 @@ namespace Md5RenamerConsole
 
 				extension = Path.GetExtension(file);
 				targetFile = Path.Combine(Program.path, Path.ChangeExtension(hash, extension));
+				targetFile = targetFile.ToLower();
 
 				if (!File.Exists(targetFile))
 				{
